@@ -2,25 +2,24 @@
   <div id="app" class="container my-5">
     <h1>My Online Store</h1>
     <div class="row">
-      <div class="col-md-3" v-for="item in forSale">
-        <div class="card">
-          <img :src="item.image" :alt="item.name" class="card-img-top">
-          <div class="card-body">
-            <h4 class="card-title">{{ item.name }}</h4>
-            <div class="card-text">${{ item.price / 100 }}</div>
-            <div class="row justify-content-end">
-              <button class="btn btn-primary">Add to cart</button>
-            </div>
-          </div>
-        </div>
-      </div>  
+      <item
+        v-for="item in forSale"
+        :key="item.invId"
+        :invId="item.invId"
+        :image="item.image"
+        :name="item.name"
+        :price="item.price"
+      ></item>  
     </div>
   </div>
 </template>
 
 <script>
+import Item from './Item.vue'
+
 export default {
   name: 'app',
+  components: { Item },
   data () {
     return {
       forSale: [
