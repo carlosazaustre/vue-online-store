@@ -17,11 +17,13 @@
 </template>
 
 <script>
+import { dollars } from './filters'
+
 export default {
   name: 'item',
   props: ['invId', 'name', 'price', 'image'],
   filters: {
-    dollars: num => `$${num / 100}`
+    dollars
   },
   methods: {
     addToCart(invId) {
