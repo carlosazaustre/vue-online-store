@@ -20,11 +20,17 @@ export default new Vuex.Store({
   mutations: {
     ADD_TO_CART(state, invId) {
       state.inCart.push(invId)
+    },
+    REMOVE_FROM_CART(state, index) {
+      state.inCart.splice(index, 1)
     }
   },
   actions: {
     addToCart(context, invId) {
       context.commit('ADD_TO_CART', invId)
+    },
+    removeFromCart(context, index) {
+      context.commit('REMOVE_FROM_CART', index)
     }
   }
 })

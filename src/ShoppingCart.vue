@@ -19,13 +19,21 @@
           <div class="modal-body">
             <table class="table">
               <tbody>
-                <tr v-for="item in cart">
+                <tr v-for="(item, index) in cart" :key="index">
                   <td>{{ item.name }}</td>
                   <td>{{ item.price | dollars }}</td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-danger"
+                      @click="removeFromCart(index)">
+                      &times;
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <th></th>
                   <th>{{ total | dollars }}</th>
+                  <th></th>
                 </tr>
               </tbody>
             </table>
@@ -64,6 +72,11 @@ export default {
     },
     total() {
       return this.cart.reduce((total, current) => total + current.price, 0)
+    }
+  },
+  methods: {
+    removeFromCart(index) {
+      this.$store.dispatch('removeFromCart', index)
     }
   }
 }
